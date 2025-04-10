@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { CorrectorComponent } from './components/corrector/corrector.component';
+import { RolePlayComponent } from './components/role-play/role-play.component';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, CorrectorComponent, RolePlayComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'corrector-grammar-ui';
+  activeSection: 'corrector' | 'roleplay' = 'corrector';
+
+  constructor(private messageService: MessageService) {}
+
+  switchSection(section: 'corrector' | 'roleplay') {
+    this.activeSection = section;
+    this.messageService.clearMessages();
+  }
 }

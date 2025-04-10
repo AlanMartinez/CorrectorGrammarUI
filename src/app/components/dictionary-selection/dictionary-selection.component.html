@@ -1,0 +1,34 @@
+<div class="dictionary-selection">
+  <h2>Select Dictionaries for Role Play</h2>
+  <p class="selection-description">Choose one or more dictionaries to practice with specific vocabulary</p>
+  
+  <div class="search-container">
+    <input type="text"
+           [(ngModel)]="searchQuery"
+           (ngModelChange)="onSearch()"
+           placeholder="Search dictionaries..."
+           class="search-input">
+  </div>
+
+  <div class="dictionaries-container">
+    <div class="dictionaries-grid">
+      <div *ngFor="let dictionary of filteredDictionaries" 
+           class="dictionary-card"
+           [class.selected]="dictionary.selected"
+           (click)="toggleDictionary(dictionary)">
+        <h3>{{ dictionary.name }}</h3>
+        <div class="selection-indicator" *ngIf="dictionary.selected">
+          <span class="checkmark">✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="start-button" 
+            (click)="startRolePlay()"
+            [disabled]="getSelectedDictionaries().length === 0">
+      Start Role Play
+    </button>
+  </div>
+</div>

@@ -1,0 +1,214 @@
+.dictionary-selection {
+  padding: 2rem 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.selection-description {
+  text-align: center;
+  color: #a0a0a0;
+  margin-bottom: 1rem;
+}
+
+.search-container {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #1a1a1a;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #333;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-input::placeholder {
+  color: #666;
+}
+
+.dictionaries-container {
+  flex: 1 1 0%;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.dictionaries-container::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.dictionaries-container::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+  margin: 0.5rem;
+}
+
+.dictionaries-container::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+  border: 2px solid #2d2d2d;
+}
+
+.dictionaries-container::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+.dictionaries-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  padding: 0.5rem;
+  padding-bottom: 5rem;
+}
+
+.dictionary-card {
+  background-color: #2d2d2d;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dictionary-card:hover {
+  transform: translateY(-2px);
+  border-color: #3b82f6;
+  background-color: #363636;
+  z-index: 1;
+}
+
+.dictionary-card.selected {
+  border-color: #3b82f6;
+  background-color: #1e3a8a;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  z-index: 2;
+}
+
+.dictionary-card h3 {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.selection-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  color: #3b82f6;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.action-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: #1a1a1a;
+  border-top: 1px solid #333;
+  z-index: 10;
+}
+
+.start-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+}
+
+.start-button:not(:disabled) {
+  background-color: #3b82f6;
+}
+
+.start-button:hover:not(:disabled) {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.start-button:disabled {
+  background-color: #4a4a4a;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+  .dictionaries-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .dictionaries-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dictionaries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .dictionary-selection {
+    padding: 1rem 1rem 0;
+  }
+  
+  .search-container {
+    padding: 0 0.5rem;
+  }
+}

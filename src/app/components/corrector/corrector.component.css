@@ -1,0 +1,243 @@
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message-content {
+  position: relative;
+  max-width: 70%;
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  word-wrap: break-word;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user .message-content {
+  background-color: #1e88e5;
+  color: white;
+  border-radius: 1.25rem 1.25rem 0 1.25rem;
+  box-shadow: 0 2px 5px rgba(30, 136, 229, 0.3);
+}
+
+.assistant .message-content {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-radius: 1.25rem 1.25rem 1.25rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.input-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.message-input {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 1px solid #444;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.message-input:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+}
+
+.message-input::placeholder {
+  color: #888;
+}
+
+.send-button {
+  padding: 1rem 1.5rem;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(30, 136, 229, 0.3);
+}
+
+.send-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(30, 136, 229, 0.4);
+}
+
+.send-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(30, 136, 229, 0.3);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 24px;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  animation: loading 1.4s infinite;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loading {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.message-input:disabled,
+.send-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.send-button:disabled {
+  background-color: #4a4a4a;
+}
+
+.send-button:disabled:hover {
+  background-color: #4a4a4a;
+  transform: none;
+}
+
+.info-icon {
+  position: relative;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.circle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4444;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.info-icon:hover .circle-icon {
+  background-color: #ff6666;
+}
+
+.popup-content {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+  background-color: rgba(51, 51, 51, 0.3);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  width: auto;
+  min-width: 300px;
+  max-width: 600px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+}
+
+.floating-button-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.floating-button {
+  position: fixed;
+  transform: translateX(-50%);
+  background-color: hsl(147, 85%, 35%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  z-index: 99999;
+}
+
+.floating-button:hover {
+  background-color: hsl(147, 64%, 34%);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.plus-icon {
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-text {
+  white-space: nowrap;
+  display: inline-block;
+}
