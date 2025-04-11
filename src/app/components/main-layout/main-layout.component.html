@@ -1,0 +1,36 @@
+<main class="app-container">
+  <nav class="navbar">
+    <div class="nav-brand">
+      <h1>Grammar Corrector</h1>
+    </div>
+    <div class="nav-links">
+      <button 
+        class="nav-button" 
+        [class.active]="activeSection === 'corrector'"
+        (click)="switchSection('corrector')"
+      >
+        <i class="fas fa-check-circle"></i>
+        Corrector
+      </button>
+      <button 
+        class="nav-button" 
+        [class.active]="activeSection === 'roleplay'"
+        (click)="switchSection('roleplay')"
+      >
+        <i class="fas fa-comments"></i>
+        Role Play
+      </button>
+    </div>
+    <div class="nav-actions">
+      <button class="logout-button" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </div>
+  </nav>
+  
+  <div class="content">
+    <app-corrector *ngIf="activeSection === 'corrector'"></app-corrector>
+    <app-role-play *ngIf="activeSection === 'roleplay'"></app-role-play>
+  </div>
+</main> 

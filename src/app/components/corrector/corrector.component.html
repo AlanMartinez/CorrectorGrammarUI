@@ -1,50 +1,52 @@
-<div class="messages" #messagesContainer>
-  <div *ngFor="let message of messages; let i = index" 
-       [class]="'message ' + message.role">
-    <div class="message-content">
-      {{ message.content }}
-      <div *ngIf="message.role === 'assistant'" 
-           class="info-icon" 
-           (click)="togglePopup($event, i)"
-           [class.active]="activePopupId === i">
-        <span class="circle-icon">!</span>
-        <div *ngIf="activePopupId === i" class="popup-content">
-          {{ message.explanation }}
+<div class="chat-container">
+  <div class="messages" #messagesContainer>
+    <div *ngFor="let message of messages; let i = index" 
+         [class]="'message ' + message.role">
+      <div class="message-content">
+        {{ message.content }}
+        <div *ngIf="message.role === 'assistant'" 
+             class="info-icon" 
+             (click)="togglePopup($event, i)"
+             [class.active]="activePopupId === i">
+          <span class="circle-icon">!</span>
+          <div *ngIf="activePopupId === i" class="popup-content">
+            {{ message.explanation }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="message assistant">
+      <div class="message-content loading">
+        <div class="loading-dots">
+          <span>.</span><span>.</span><span>.</span>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="isLoading" class="message assistant">
-    <div class="message-content loading">
-      <div class="loading-dots">
-        <span>.</span><span>.</span><span>.</span>
-      </div>
-    </div>
+
+  <div class="input-container">
+    <input type="text" 
+           [(ngModel)]="newMessage" 
+           (keyup.enter)="sendMessage()"
+           placeholder="Type your message..."
+           [disabled]="isLoading"
+           class="message-input">
+    <button (click)="sendMessage()" 
+            [disabled]="isLoading"
+            class="send-button">
+      Send
+    </button>
   </div>
-</div>
 
-<div class="input-container">
-  <input type="text" 
-         [(ngModel)]="newMessage" 
-         (keyup.enter)="sendMessage()"
-         placeholder="Type your message..."
-         [disabled]="isLoading"
-         class="message-input">
-  <button (click)="sendMessage()" 
-          [disabled]="isLoading"
-          class="send-button">
-    Send
-  </button>
-</div>
-
-<!-- Floating button container -->
-<div class="floating-button-container">
-  <div *ngIf="showFloatingButton" 
-       class="floating-button"
-       [style.top.px]="floatingButtonPosition.top"
-       [style.left.px]="floatingButtonPosition.left"
-       (click)="addToDictionary()">
-    <span class="plus-icon">+</span>
-    <span class="button-text">Add to dictionary</span>
+  <!-- Floating button container -->
+  <div class="floating-button-container">
+    <div *ngIf="showFloatingButton" 
+         class="floating-button"
+         [style.top.px]="floatingButtonPosition.top"
+         [style.left.px]="floatingButtonPosition.left"
+         (click)="addToDictionary()">
+      <span class="plus-icon">+</span>
+      <span class="button-text">Add to dictionary</span>
+    </div>
   </div>
 </div>

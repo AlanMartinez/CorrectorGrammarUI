@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CorrectorComponent } from './components/corrector/corrector.component';
-import { RolePlayComponent } from './components/role-play/role-play.component';
-import { MessageService } from './services/message.service';
+import { RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, CorrectorComponent, RolePlayComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [CommonModule, RouterOutlet],
+  template: `
+    <router-outlet></router-outlet>
+  `,
+  styles: [`
+    :host {
+      display: block;
+      height: 100vh;
+      width: 100%;
+    }
+  `]
 })
 export class AppComponent {
-  activeSection: 'corrector' | 'roleplay' = 'corrector';
-
-  constructor(private messageService: MessageService) {}
-
-  switchSection(section: 'corrector' | 'roleplay') {
-    this.activeSection = section;
-    this.messageService.clearMessages();
-  }
+  constructor(private authService: AuthService) {}
 }

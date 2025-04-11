@@ -188,12 +188,9 @@ export class CorrectorComponent implements AfterViewChecked {
       this.dictionaryService.addToDictionary(this.selectedText)
         .subscribe({
           next: (response) => {
-            console.log('Word added to dictionary:', response);
-            // You can add additional success handling here if needed
           },
           error: (error) => {
             console.error('Error adding word to dictionary:', error);
-            // You can add error handling here if needed
           }
         });
     }

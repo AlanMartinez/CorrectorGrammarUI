@@ -11,17 +11,19 @@
     </button>
   </div>
 
-  <div class="messages" #messagesContainer>
-    <div *ngFor="let message of messages" 
-         [class]="'message ' + message.role">
-      <div class="message-content">
-        {{ message.content }}
+  <div class="chat-content">
+    <div class="messages" #messagesContainer>
+      <div *ngFor="let message of messages" 
+           [class]="'message ' + message.role">
+        <div class="message-content">
+          {{ message.content }}
+        </div>
       </div>
-    </div>
-    <div *ngIf="isLoading" class="message assistant">
-      <div class="message-content loading">
-        <div class="loading-dots">
-          <span>.</span><span>.</span><span>.</span>
+      <div *ngIf="isLoading" class="message assistant">
+        <div class="message-content loading">
+          <div class="loading-dots">
+            <span>.</span><span>.</span><span>.</span>
+          </div>
         </div>
       </div>
     </div>
