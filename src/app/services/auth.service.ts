@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface LoginResponse {
   access_token: string;
@@ -22,7 +23,6 @@ export interface RegisterRequest {
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API_URL = 'http://127.0.0.1:8001';
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_ID_KEY = 'user_id';
   
@@ -40,7 +40,7 @@ export class AuthService {
     body.set('username', credentials.username);
     body.set('password', credentials.password);
 
-    return this.http.post<LoginResponse>(`${this.API_URL}/token`, body.toString(), { headers })
+    return this.http.post<LoginResponse>(`${environment.apiRestUrl}/token`, body.toString(), { headers })
       .pipe(
         tap(response => {
           this.setToken(response.access_token);
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   register(userData: RegisterRequest): Observable<any> {
-    return this.http.post(`${this.API_URL}/register`, userData);
+    return this.http.post(`${environment.apiRestUrl}/register`, userData);
   }
 
   logout(): void {
