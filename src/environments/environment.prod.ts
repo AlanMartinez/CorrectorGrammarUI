@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000' // Replace with your production API URL
+  apiUrl: 'https://cgmcp.onrender.com/', // Replace with your production API URL
+  apiRestUrl: 'https://cg-api-zhfq.onrender.com/'
 }; 
